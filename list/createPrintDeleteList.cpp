@@ -78,8 +78,13 @@ list deleteElem(list l, elem *e)
 {
     if (l == NULL)
     {
+        return l;
+    }
+    else if (l == e)
+    {
+        l = tail(l);
         delete e;
-        return tail(l);
+        return l;
     }
     else
     {
@@ -102,8 +107,7 @@ void deleteList(list &l)
 {
     while (l != NULL)
     {
-        deleteElem(l, l);
-        l = tail(l);
+        l = deleteElem(l, l);
     }
 }
 
