@@ -1,4 +1,3 @@
-#include <cstring>
 #include <iostream>
 
 using namespace std;
@@ -51,22 +50,21 @@ list createList(int n) {
 	}
 
 	list l = new elem;
-	char url[50];
 
 	cout << "Insert URL: ";
-	cin >> url;
+	cin >> l->url;
 	cout << endl;
 
-	strcpy(l->url, url);
+	l->next = l->prev = NULL;
 
 	for (int i = 1; i < n; i++) {
 		elem *e = new elem;
 
 		cout << "Insert URL: ";
-		cin >> url;
+		cin >> e->url;
 		cout << endl;
 
-		strcpy(e->url, url);
+		e->next = e->prev = NULL;
 
 		l = insertElem(l, e);
 	}
