@@ -74,6 +74,12 @@ list createList(int n) {
 	return l;
 }
 
+void deleteList(list l) {
+	while (l != NULL) {
+		l = deleteElem(l, l);
+	}
+}
+
 void printList(list l) {
 	while (l != NULL) {
 		cout << head(l) << endl;
