@@ -2,7 +2,7 @@
 #include <iostream>
 
 // clang-format off
-#include "listType.h"
+#include "type.h"
 #include "lists.h"
 #include "appFunctions.h"
 // clang-format on
@@ -11,7 +11,7 @@ using namespace std;
 
 int main() {
 	int choice, n;
-	char url[50];
+	char url[51];
 	list l;
 
 	do {

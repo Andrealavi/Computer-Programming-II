@@ -1,7 +1,7 @@
 #include <iostream>
 
 // clang-format off
-#include "listType.h"
+#include "type.h"
 #include "lists.h"
 #include "appFunctions.h"
 // clang-format on
