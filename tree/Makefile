@@ -1,4 +1,4 @@
-OBJ = main.o tree.o string.o 
+OBJ = main.o tree.o string.o coda-bfs.o
 
 Tree: $(OBJ)
 	g++ -o ../build/$@ $^
