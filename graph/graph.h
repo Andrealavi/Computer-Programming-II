@@ -20,3 +20,4 @@ int getDim(graph);
 adjList getAdjList(graph, int);
 int getAdjNode(adjNode*);
 adjList getNextAdj(adjList);
+float getAdjWeight(adjNode*);

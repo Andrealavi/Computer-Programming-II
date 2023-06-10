@@ -1,4 +1,4 @@
-OBJ = main.o graph.o coda-bfs.o
+OBJ = dijkstra.o graph.o codap.o
 
 graph: $(OBJ)
 	g++ -o ../build/$@ $^
