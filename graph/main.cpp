@@ -35,8 +35,8 @@ graph gBuild(ifstream& file, bool d, bool w) {
 	return g;
 }
 
-void iterativeBFS(graph g, int v) {
-	bool* visited = new bool[g.dim];
+void iterativeBFS(graph g, int v, bool*& visited) {
+	visited = new bool[g.dim];
 
 	for (int i = 0; i < g.dim; i++) {
 		visited[i] = false;
@@ -67,14 +67,44 @@ void iterativeBFS(graph g, int v) {
 	}
 }
 
+bool connected(graph g) {
+	int count;
+
+	for (int i = 0; i < g.dim; i++) {
+		bool* visited;
+		count = 0;
+
+		iterativeBFS(g, i + 1, visited);
+
+		for (int j = 0; j < g.dim; j++) {
+			if (!visited[j]) {
+				break;
+			} else {
+				count++;
+			}
+		}
+
+		delete visited;
+
+		if (count == g.dim) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
 int main(int argc, char* argv[]) {
 	ifstream file;
+	bool* visited;
 
 	file.open(argv[1]);
 
 	graph g = gBuild(file, atoi(argv[2]), atoi(argv[3]));
 
-	iterativeBFS(g, 1);
+	iterativeBFS(g, 1, visited);
+
+	cout << connected(g) << endl;
 
 	return 0;
 }
