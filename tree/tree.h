@@ -15,3 +15,5 @@ node* getNextSibling(node*);
 node* newNode(infType);
 void insertChild(tree, tree);
 void insertSibling(node*, tree);
+void deleteNode(tree&, node*);
+node* search(tree, infType);

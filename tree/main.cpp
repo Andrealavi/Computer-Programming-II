@@ -23,6 +23,15 @@ void serialize(tree t) {
 	}
 }
 
+void printTree(tree t) {
+	if (t != NULL) {
+		cout << getInfo(t) << endl;
+
+		printTree(getFirstChild(t));
+		printTree(getNextSibling(t));
+	}
+}
+
 int getTreeHeight(tree t) {
 	if (t != NULL) {
 		return max(1 + getTreeHeight(getFirstChild(t)),
@@ -61,22 +70,43 @@ int dimensionDFS(tree t) {
 	}
 }
 
+void printSubTree(tree t) {
+	if (t != NULL) {
+		if (compare(getInfo(t), "M") < 0) {
+			cout << getInfo(t) << endl;
+		}
+
+		printSubTree(getFirstChild(t));
+		printSubTree(getNextSibling(t));
+	}
+}
+
 int main() {
 	tree t = newNode("Luca");
 
 	tree c = newNode("Paolo");
+
+	infType name;
+	copy(name, "Anna");
+
 	insertChild(t, c);
 
 	insertSibling(c, newNode("Marco"));
 	insertChild(c->nextSibling, newNode("Lucia"));
 	insertSibling(c->nextSibling, newNode("Anna"));
+	/*
+		serialize(t);
+		cout << endl;
 
-	serialize(t);
+		cout << getTreeHeight(t) << endl;
+		cout << dimensionBFS(t) << endl;
+		cout << dimensionDFS(t) << endl;
+	*/
+	printTree(t);
+
 	cout << endl;
 
-	cout << getTreeHeight(t) << endl;
-	cout << dimensionBFS(t) << endl;
-	cout << dimensionDFS(t) << endl;
+	printSubTree(t);
 
 	return 0;
 }

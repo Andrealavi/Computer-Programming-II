@@ -120,6 +120,21 @@ void dfsVisit(graph g, bool* visited, int* pre, int* post, int& time,
 	post[i - 1] = time++;
 }
 
+void dfsVisit(graph g, bool* visited, int n) {
+	adjList l = getAdjList(g, n);
+	visited[n - 1] = true;
+
+	while (l != NULL) {
+		int node = getAdjNode(l) - 1;
+
+		if (!visited[node]) {
+			dfsVisit(g, visited, node + 1);
+		}
+
+		l = getNextAdj(l);
+	}
+}
+
 bool isThereCycle(graph g) {
 	bool* visited = new bool[g.dim];
 	int* pre = new int[g.dim];
@@ -143,6 +158,24 @@ bool isThereCycle(graph g) {
 	return cycle;
 }
 
+int countIsland(graph g) {
+	bool* visited = new bool[g.dim];
+	int islandNumber = 0;
+
+	for (int i = 0; i < g.dim; i++) {
+		visited[i] = false;
+	}
+
+	for (int i = 1; i <= g.dim; i++) {
+		if (!visited[i - 1]) {
+			dfsVisit(g, visited, i);
+			islandNumber++;
+		}
+	}
+
+	return islandNumber;
+}
+
 int main(int argc, char* argv[]) {
 	ifstream file;
 	bool* visited;
@@ -155,7 +188,9 @@ int main(int argc, char* argv[]) {
 
 	// cout << connected(g) << endl;
 
-	cout << isThereCycle(g) << endl;
+	// cout << isThereCycle(g) << endl;
+
+	cout << countIsland(g) << endl;
 
 	return 0;
 }
